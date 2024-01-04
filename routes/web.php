@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index', [
+        'title' => 'Home'
+    ]);
+});
+
+Route::get('/categories', [CategoriesController::class, 'categories']);
+
+Route::get('/categories/{category:slug}', [CategoriesController::class, 'category']);
+
+Route::get('/books', [BookController::class, 'books']);
+
+Route::get('/books/{book:slug}', [BookController::class, 'bookId']);
+
+Route::get('/about', function() {
+    return view('about', [
+        'title' => 'About'
+    ]);
 });
